@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { increment, decrement, incrementIfOdd, incrementAsync } from './actions/index';
+import { increment, decrement, incrementIfOdd, incrementAsync } from '../actions/index';
 
 
 
@@ -46,4 +46,10 @@ export default connect(mapStateToProps, (dispatch) => {
     incrementIfOdd: () => dispatch(incrementIfOdd()),
     incrementAsync: () => dispatch(incrementAsync())
   }
-})(Counter);
+}, (stateProps, dispatchProps, ownProps) => {
+  return {
+    ...stateProps,
+    ...dispatchProps,
+    ownProps
+  }
+}, { forwardRef: true })(Counter);

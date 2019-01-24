@@ -30,7 +30,7 @@ export default function connect(mapStateToProps,mapDispatchToProps,mergeProps,op
     return function wrapWithConnect(WrappedComponent){
         // ...
         class Connect extends Component(){
-render(){
+           render(){
             // ...
                 if(withRef){
                     this.renderElement = createElement(WrappedComponent,{
@@ -43,11 +43,10 @@ render(){
                     })
                 }
                 return this.renderElement;
-        }
+            }
         }
         
-
-        return hoistStatics()
+        return hoistStatics(Connect,WrappedComponent)
     }
 }
 ```

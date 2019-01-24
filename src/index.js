@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Counter from './counter';
+import App from './components/app';
 import * as serviceWorker from './serviceWorker';
 import counter from './reducers/index'
 import { createStore, applyMiddleware } from 'redux';
@@ -12,7 +12,7 @@ const store = createStore(counter, applyMiddleware(thunk));
 
 ReactDOM.render(
     <Provider store={store}>
-        <Counter />
+        <App />
     </Provider>
     ,
     document.getElementById('root'));
