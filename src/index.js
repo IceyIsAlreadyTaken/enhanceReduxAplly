@@ -4,21 +4,21 @@ import './index.css';
 import Counter from './counter';
 import * as serviceWorker from './serviceWorker';
 import counter from './reducers/index'
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
-const store = createStore(counter);
+const store = createStore(counter, applyMiddleware(thunk));
 
-function render() {
-    ReactDOM.render(
-        <Counter
-            value={store.getState()}
-            increment={() => { store.dispatch({ type: 'INCREMENT' }) }}
-            decrement={() => { store.dispatch({ type: 'DECREMENT' }) }} />,
-        document.getElementById('root'));
-}
+ReactDOM.render(
+    <Provider store={store}>
+        <Counter />
+    </Provider>
+    ,
+    document.getElementById('root'));
 
-render();
-store.subscribe(render);
+
+
 
 
 // If you want your app to work offline and load faster, you can change
