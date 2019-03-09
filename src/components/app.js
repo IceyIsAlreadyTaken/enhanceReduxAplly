@@ -1,21 +1,30 @@
 import React from 'react';
-import Counter from './counter';
+import CounterWrap from './counter-wrap';
+import PropTypes from 'prop-types';
 
 class App extends React.Component {
 
-
-
-
+    // 父组件定义context
+    getChildContext() {
+        return {
+            value: 'haha'
+        }
+    }
 
     render() {
         return (
             <div>
-                <div onClick={() => { console.log(this.counter) }}>点击获取ref实例</div>
-                <Counter ref={(counter) => { this.counter = counter }} />
+
+                <CounterWrap />
+
             </div>
 
         )
     }
+}
+
+App.childContextTypes = {
+    value: PropTypes.string
 }
 
 export default App;

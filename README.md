@@ -19,5 +19,5 @@ You will also see any lint errors in the console.
 2、任意state变化都会导致整个组件树重新渲染，没有性能优化
 
 ### Version 1.0.1
-使用react-redux Provider+connect实现react和redux的连接
+使用react-redux Provider+connect实现react和redux的连接   
 使用react-thunk中间件支持action创建函数返回一个函数
