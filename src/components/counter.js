@@ -9,19 +9,57 @@ import { increment, decrement, incrementIfOdd, incrementAsync } from '../actions
 class Counter extends Component {
 
 
+  undo = () => {
+    this.props.dispatch({
+      type: "UNDO"
+    })
+  }
+
+  redo = () => {
+    this.props.dispatch({
+      type: "REDO"
+    })
+  }
+
+  increment = () => {
+    this.props.dispatch(increment());
+  }
+
+  decrement = () => {
+    this.props.dispatch(decrement());
+  }
+
+  incrementIfOdd = () => {
+    this.props.dispatch(incrementIfOdd());
+  }
+
+  incrementAsync = () => {
+    this.props.dispatch(incrementAsync());
+  }
+
+
+
+
+
+
+
   render() {
-    const { value, increment, decrement, incrementIfOdd, incrementAsync } = this.props;
-    console.log(increment);
+    const { value } = this.props;
+
     return (
       <div>
         <p>clicked {value} times</p>
-        <button onClick={increment}>+</button>
+        <button onClick={this.increment}>+</button>
         &nbsp;&nbsp;&nbsp;
-        <button onClick={decrement}>-</button>
+        <button onClick={this.decrement}>-</button>
         &nbsp;&nbsp;&nbsp;
-        <button onClick={incrementIfOdd}>IncrementIfOdd</button>
+        <button onClick={this.incrementIfOdd}>IncrementIfOdd</button>
         &nbsp;&nbsp;&nbsp;
-        <button onClick={incrementAsync}>IncrementAsync</button>
+        <button onClick={this.incrementAsync}>IncrementAsync</button>
+        <div>
+          <button onClick={this.undo}>UnDo</button>
+          <button onClick={this.redo}>ReDo</button>
+        </div>
       </div>
     );
   }
@@ -39,17 +77,22 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, (dispatch) => {
-  return {
-    increment: () => dispatch(increment()),
-    decrement: () => dispatch(decrement()),
-    incrementIfOdd: () => dispatch(incrementIfOdd()),
-    incrementAsync: () => dispatch(incrementAsync())
-  }
-}, (stateProps, dispatchProps, ownProps) => {
-  return {
-    ...stateProps,
-    ...dispatchProps,
-    ownProps
-  }
-}, { forwardRef: true })(Counter);
+// export default connect(mapStateToProps, (dispatch) => {
+//   return {
+//     increment: () => dispatch(increment()),
+//     decrement: () => dispatch(decrement()),
+//     incrementIfOdd: () => dispatch(incrementIfOdd()),
+//     incrementAsync: () => dispatch(incrementAsync())
+//   }
+// }, (stateProps, dispatchProps, ownProps) => {
+//   return {
+//     ...stateProps,
+//     ...dispatchProps,
+//     ownProps
+//   }
+// }, { forwardRef: true })(Counter);
+
+
+export default connect(mapStateToProps)(Counter);
+
+

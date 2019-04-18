@@ -1,6 +1,6 @@
 
 
-export default function counter(state = 0, action) {
+export function counter(state = 0, action) {
     switch (action.type) {
         case 'INCREMENT':
             return state + 1;
@@ -11,4 +11,19 @@ export default function counter(state = 0, action) {
 
     }
 
+}
+
+export function unDoAble(reducer) {
+
+    const initialState = reducer(undefined, {});
+
+    return function (state = initialState, action) {
+        switch (action.type) {
+            case "UNDO": return state - 1;
+            case "REDO": return state + 1;
+            default: return reducer(state, action)
+
+        }
+
+    }
 }

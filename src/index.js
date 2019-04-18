@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/app';
 import * as serviceWorker from './serviceWorker';
-import counter from './reducers/index'
+import { counter, unDoAble } from './reducers/index'
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-const store = createStore(counter, applyMiddleware(thunk));
+const store = createStore(unDoAble(counter), applyMiddleware(thunk));
 
 ReactDOM.render(
     <Provider store={store}>
