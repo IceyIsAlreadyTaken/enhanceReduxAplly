@@ -21,3 +21,8 @@ You will also see any lint errors in the console.
 ### Version 1.0.1
 使用react-redux Provider+connect实现react和redux的连接   
 使用react-thunk中间件支持action创建函数返回一个函数
+
+### Version 1.0.2
+添加higher order reducer应用
+
+
